@@ -87,29 +87,28 @@
 
     var translateDistance = $(window).scrollTop() - inputPreviewOfIconSideTop; 
 
-    inputPreviewOfIconSide.css({
-      'transform': 'translate3d(0, ' + (translateDistance) + 'px, 0)',
-      'width': '100%',
-      'backgroundColor': '#fff',
-      'marginLeft' :0,
-      'borderRadius':0
-    });
+    setTimeout(function(){
+      inputPreviewOfIconSide.css({
+        'transform': 'translate3d(0, ' + (translateDistance) + 'px, 0)',
+        'width': '100%',
+        'backgroundColor': '#fff',
+        'marginLeft' :0,
+        'borderRadius':0
+      });
+    },1);
 
     mainView.css({'opacity':0});
     searchIcon.hide();
       
     searchView.show();
-    
-    //forced reflow.
-    searchView[0].offsetHeight; 
-     //setTimeout(function() {
+     setTimeout(function() {
        searchView.css({
          'transform': 'translate3d(0, ' + (translateDistance) + 'px, 0)'
        });
-    //},1);
+    },1);
   }
 
-  function inputPreviewOfIconSideTransitionEnd(evt) {
+  function searchViewInputTransitionEnd(evt) {
     var _name = _cu.getCSSName("transform");
     var y = parseInt(evt.target.style[_name].split(',')[1]);
 
@@ -164,7 +163,7 @@
 
     //search Icon.
     searchIcon.on("touchend", onSearchIconTouchEnd);
-    inputPreviewOfIconSide.on(sTSE, inputPreviewOfIconSideTransitionEnd);
+    inputPreviewOfIconSide.on(sTSE, searchViewInputTransitionEnd);
 
     closeBtn.on("touchend", onBack);
   }
