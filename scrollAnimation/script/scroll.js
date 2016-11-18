@@ -7,7 +7,7 @@
 
 (function() {
 
- (function() {
+  (function() {
     var _headerHeight = $("header").height();
     var _searchIcon = $(".searchIcon");
     var _inputPreviewOfIconSide = $('.inputPreviewOfIconSide');
@@ -18,7 +18,6 @@
     _searchIcon.css({'top': iconTopPos});
     _inputPreviewOfIconSide.css({'top': iconTopPos});
     _searchView.css({'top': iconTopPos + 31});
-
   })();
 
   var mainView = $("#mainView");
@@ -42,23 +41,18 @@
 
       if(bigScroll) return;
 
-      $(document.body).addClass("scroll");
       inputPreview.css({'opacity':1});
-      inputPreview.css('backgroundColor', searchBarAfterColor);
-      //inputPreview.css({'top' : 0});
-      bigScroll = true;
 
-      // setTimeout(function() {
-      //   console.log("setimtoue");
-      //   //inputPreview.css('backgroundColor', searchBarAfterColor);
-      //   bigScroll = true;
-      // }, 1);
+      setTimeout(function() {
+        inputPreview.css('backgroundColor', searchBarAfterColor);
+        bigScroll = true;
+      }, 1);
 
     } else {
       if(!bigScroll) return;
-      $(document.body).removeClass("scroll");
-       inputPreview.css('backgroundColor', searchBarPrevColor);
-       inputPreview.css({'opacity':0});
+
+      inputPreview.css('backgroundColor', searchBarPrevColor);
+      inputPreview.css({'opacity':0});
       bigScroll = false;
     } 
   }
@@ -169,12 +163,6 @@
   }
 
   registerEvents();
-
-  // $(window).trigger( "scroll" );
-  // $(document).trigger("touchstart");
-  // $(document).trigger("touchend");
-  // $(window).trigger("touchstart");
-  // $(window).trigger("touchend");
 
 })();
 
