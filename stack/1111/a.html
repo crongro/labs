@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Untitled</title>
+    </head>
+    <body>
+      <form>
+        <input type="text" size="30" onkeyup="showResult(this.value)">
+        <table id="livesearch"></table>
+        <div id="demo"></div>
+      </form>
+
+
+    </body>
+    <script>
+     var inTable = new Set();
+
+  function showResult(str) {
+    if (str.length == 0) {
+      document.getElementById("livesearch").innerHTML = "";
+      document.getElementById("livesearch").style.border = "0px";
+      //inTable.clear();
+      return;
+    }
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (xhttp.readyState == 4 && xhttp.status == 200) {
+        myFunction(xhttp, str);
+      }
+    };
+    xhttp.open("GET", "Menu.xml", true);
+    xhttp.send();
+  }
+
+  function myFunction(xml, str) {
+
+    var tbody = document.getElementById('livesearch');
+    var i;
+    var xmlDoc = xml.responseXML;
+    var x = xmlDoc.getElementsByTagName("ITEM");
+    for (i = 0; i < x.length; i++) {
+      a = x[i].getElementsByTagName("NAME")[0].childNodes[0].nodeValue.toString();
+      if (a.toLowerCase().indexOf(str) != -1) {
+        if (inTable.has(a) == false) {
+          console.log("add to table");
+          inTable.add(a);
+          var tr = document.createElement('tr');
+          tr.setAttribute('name', a);
+          var td = document.createElement('td');
+          td.innerHTML = x[i].getElementsByTagName("NAME")[0].childNodes[0].nodeValue;
+          tr.appendChild(td);
+          td = document.createElement('td');
+          td.innerHTML = x[i].getElementsByTagName("PRICE")[0].childNodes[0].nodeValue;
+          tr.appendChild(td);
+          td = document.createElement('td');
+          td.innerHTML = x[i].getElementsByTagName("DESC")[0].childNodes[0].nodeValue;
+          tr.appendChild(td);
+          tr.setAttribute('onclick', 'changeSomething();');
+          tbody.appendChild(tr);
+        } else console.log("it exists in table");
+      } else if (inTable.has(a) == true) {
+        console.log("deletes from table");
+        inTable.delete(a);
+        var y = document.getElementsByName(a)[0];
+        tbody.deleteRow(y.rowIndex);
+      }
+    }
+  }
+  changeSomething = function() {
+    document.getElementById('demo').style.visibility = 'hidden';
+  }
+ 
+    </script>
+</html>
