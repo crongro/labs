@@ -76,9 +76,9 @@ isGreekSymbol('π')
 ```
 
 
-##5. lookahead, lookbehind
+## 5. lookahead, lookbehind
 먼저 이해. 
-참고 : http://unlimitedpower.tistory.com/entry/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D-%EC%9D%B4%EA%B2%83%EC%9D%B4-%EA%B3%A0%EA%B8%89%EC%9D%B4%EB%8B%A4-Positive-Negative-Lookahead-Lookbehind
+: http://unlimitedpower.tistory.com/entry/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D-%EC%9D%B4%EA%B2%83%EC%9D%B4-%EA%B3%A0%EA%B8%89%EC%9D%B4%EB%8B%A4-Positive-Negative-Lookahead-Lookbehind
 
 ```javascript
 function getJavaScriptFilename(input) {
